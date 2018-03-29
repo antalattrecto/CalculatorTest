@@ -72,9 +72,12 @@ namespace Calculator
             driver.FindElement(By.LinkText("$$q")).Click();
             driver.FindElement(By.LinkText("$$a")).Click();
             driver.FindElement(By.LinkText("$$s")).Click();
-            string invalidInputValue = driver.FindElement(By.XPath("/html/body")).Text;
-            Assert.IsTrue(invalidInputValue.Contains("Too many variables"));
+            IWebElement element = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[1]"));
+            String toolTipText = element.GetAttribute("tooltip");
+            Assert.AreEqual("Too many variables. Try defining 'q', 'a' or 's'.", toolTipText);
         }
+
+
         [Test]
 
         //General - 6. Delete one character
