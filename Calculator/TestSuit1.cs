@@ -25,9 +25,24 @@ namespace Calculator
             driver.FindElement(By.LinkText("$$1")).Click();
             driver.FindElement(By.LinkText("$$.")).Click();
             driver.FindElement(By.LinkText("$$1")).Click();
-            string decimalvalue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div")).Text;
-            Assert.IsTrue(decimalvalue.Contains("1.1"));
+            string decimalValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div")).Text;
+            Assert.IsTrue(decimalValue.Contains("1.1"));
             
+        }
+
+        [Test]
+
+        //General - 3. Clear All
+
+            public void ClearAll()
+        {
+            driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
+            driver.FindElement(By.LinkText("$$9")).Click();
+            driver.FindElement(By.LinkText("$$6")).Click();
+            driver.FindElement(By.LinkText("$$5")).Click();
+            driver.FindElement(By.XPath("//div[@id='main']/div/div/div[3]/div/div[8]")).Click();
+            string clearAllValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[4]/div/div/span[2]")).Text;
+            Assert.IsEmpty(clearAllValue);
         }
 
 
@@ -39,10 +54,13 @@ namespace Calculator
         {
             driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
             driver.FindElement(By.LinkText("$$7")).Click();
+            driver.FindElement(By.LinkText("$$7")).Click();
             driver.FindElement(By.LinkText("$$+")).Click();
             driver.FindElement(By.LinkText("$$1")).Click();
-            string additionvalue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div/span[2]/span[2]")).Text;
-            Assert.IsTrue(additionvalue.Contains("8"));
+            driver.FindElement(By.LinkText("$$7")).Click();
+            driver.FindElement(By.LinkText("$$2")).Click();
+            string additionValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div")).Text;
+            Assert.IsTrue(additionValue.Contains("249"));
             
         }
        
