@@ -8,6 +8,8 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
+
+
 namespace Calculator
 {
     public class TestSuit1
@@ -15,11 +17,13 @@ namespace Calculator
 
         IWebDriver driver = new FirefoxDriver();
 
+
+
         [Test]
 
         //General-2. Decimal Input
-        
-            public void Decimal()
+
+        public void Decimal()
         {
             driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
             driver.FindElement(By.LinkText("$$1")).Click();
@@ -27,14 +31,14 @@ namespace Calculator
             driver.FindElement(By.LinkText("$$1")).Click();
             string decimalValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div")).Text;
             Assert.IsTrue(decimalValue.Contains("1.1"));
-            
+
         }
 
         [Test]
 
         //General - 3. Clear All
 
-            public void ClearAll()
+        public void ClearAll()
         {
             driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
             driver.FindElement(By.LinkText("$$9")).Click();
@@ -49,7 +53,7 @@ namespace Calculator
 
         //General - 4. Undo
 
-            public void Undo()
+        public void Undo()
         {
             driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
             driver.FindElement(By.LinkText("$$5")).Click();
@@ -64,7 +68,7 @@ namespace Calculator
 
         //General - 5. Invalid input
 
-            public void Invalid()
+        public void Invalid()
 
         {
             driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
@@ -82,7 +86,7 @@ namespace Calculator
 
         //General - 6. Delete one character
 
-            public void Delete()
+        public void Delete()
 
         {
             driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
@@ -97,11 +101,14 @@ namespace Calculator
 
         //General - 7. Answer text
 
-            public void Answer()
+        public void Answer()
         {
             driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
             driver.FindElement(By.LinkText("$$9")).Click();
             driver.FindElement(By.LinkText("$$÷")).Click();
+            IWebElement element = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[1]"));
+            String toolTipText3 = element.GetAttribute("tooltip");
+            Assert.AreEqual("You need a denominator for the bottom of your fraction.", toolTipText3);
             driver.FindElement(By.LinkText("$$5")).Click();
             string answerValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[1]/div")).Text;
             Assert.IsTrue(answerValue.Contains("Your answers show up on this side."));
@@ -112,19 +119,78 @@ namespace Calculator
 
         //Basic-8. Addition
 
-            public void Addition()
+        public void Addition()
         {
             driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
             driver.FindElement(By.LinkText("$$7")).Click();
             driver.FindElement(By.LinkText("$$7")).Click();
             driver.FindElement(By.LinkText("$$+")).Click();
+            IWebElement element = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[1]"));
+            String toolTipText2 = element.GetAttribute("tooltip");
+            Assert.AreEqual("You need something on both sides of the '+' symbol.", toolTipText2);
             driver.FindElement(By.LinkText("$$1")).Click();
             driver.FindElement(By.LinkText("$$7")).Click();
             driver.FindElement(By.LinkText("$$2")).Click();
             string additionValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div")).Text;
             Assert.IsTrue(additionValue.Contains("249"));
-            
+
         }
-       
+
+        [Test]
+
+        //Basic - 9. Subtraction
+
+        public void Subtraction()
+        {
+            driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
+            driver.FindElement(By.LinkText("$$1")).Click();
+            driver.FindElement(By.LinkText("$$−")).Click();
+            IWebElement element = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[1]"));
+            String toolTipText2 = element.GetAttribute("tooltip");
+            Assert.AreEqual("You need something on both sides of the '-' symbol.", toolTipText2);
+            driver.FindElement(By.LinkText("$$−")).Click();
+            driver.FindElement(By.LinkText("$$1")).Click();
+            string subtractValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div")).Text;
+            Assert.IsTrue(subtractValue.Contains("2"));
+        }
+
+        [Test]
+
+        //Basic - 10. Multiplication
+
+        public void Multiplication()
+        {
+            driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
+            driver.FindElement(By.LinkText("$$7")).Click();
+            driver.FindElement(By.LinkText("$$.")).Click();
+            driver.FindElement(By.LinkText("$$1")).Click();
+            driver.FindElement(By.LinkText("$$×")).Click();
+            IWebElement element = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[1]"));
+            String toolTipText4 = element.GetAttribute("tooltip");
+            Assert.AreEqual("You need something on both sides of the '*' symbol.", toolTipText4);
+            driver.FindElement(By.LinkText("$$5")).Click();
+            driver.FindElement(By.LinkText("$$1")).Click();
+            string multipValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]")).Text;
+            Assert.IsTrue(multipValue.Contains("362.1"));
+        }
+
+        [Test]
+
+        //Basic - 11. Fraction
+
+        public void Fraction()
+        {
+            driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
+            driver.FindElement(By.LinkText("$$1")).Click();
+            driver.FindElement(By.LinkText("$$÷")).Click();
+            IWebElement element = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[1]"));
+            String toolTipText5 = element.GetAttribute("tooltip");
+            Assert.AreEqual("You need a denominator for the bottom of your fraction.", toolTipText5);
+            driver.FindElement(By.LinkText("$$0")).Click();
+            string answerValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div")).Text;
+            Assert.IsTrue(answerValue.Contains("undefined"));
+        }
+
+            
     }
 }
