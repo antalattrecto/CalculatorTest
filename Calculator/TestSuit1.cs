@@ -12,12 +12,26 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Calculator
 {
+    [TestFixture]
+
     public class TestSuit1
     {
+       
+        private IWebDriver driver;
 
-        IWebDriver driver = new FirefoxDriver();
+        [SetUp]
+        public void SetUp()
+        {
+            driver = new FirefoxDriver();
+            driver.Navigate().GoToUrl("https://www.google.com/");
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(2));
+        }
 
-
+        [TearDown]
+        public void TearDown()
+        {
+            driver.Quit();
+        }
 
         [Test]
 
@@ -25,7 +39,7 @@ namespace Calculator
 
         public void Decimal()
         {
-          try
+            try
             {
 
                 driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
@@ -39,7 +53,7 @@ namespace Calculator
 
             catch (Exception e)
             {
-                Console.WriteLine("Test No. 2 - An error has occured.");
+                Console.WriteLine("Test No. 2 - An error has occured.", e);
             }
 
         }
@@ -289,9 +303,8 @@ namespace Calculator
             {
                 Console.WriteLine("Test No. 11 - An error has occured.", e);
             }
-
         }
 
-            
     }
+
 }
