@@ -18,7 +18,7 @@ namespace Calculator
         public void SetUp()
         {
             driver = new FirefoxDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
         }
 
         [TearDown]
@@ -41,8 +41,7 @@ namespace Calculator
                 driver.FindElement(By.LinkText("$$.")).Click();
                 driver.FindElement(By.LinkText("$$1")).Click();
                 string decimalValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div")).Text;
-                Assert.AreEqual(decimalValue, "1.1");
-                //Assert.IsTrue(decimalValue.Contains("1.1"));
+                Assert.AreEqual("1.1", decimalValue);
                 Console.WriteLine("Test No. 2 - Passed");
             }
 
@@ -145,7 +144,7 @@ namespace Calculator
                 driver.FindElement(By.LinkText("$$8")).Click();
                 driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[3]/div[2]/div[1]/div[9]/a")).Click();
                 string deleteValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[4]/div/div/span[2]/span")).Text;
-                Assert.IsTrue(deleteValue.Contains("7"));
+                Assert.AreEqual("7", deleteValue);
                 Console.WriteLine("Test No.6 - Passed");
             }
 
@@ -171,7 +170,7 @@ namespace Calculator
                 Assert.AreEqual("You need a denominator for the bottom of your fraction.", toolTipText3);
                 driver.FindElement(By.LinkText("$$5")).Click();
                 string answerValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[1]/div")).Text;
-                Assert.IsTrue(answerValue.Contains("Your answers show up on this side."));
+                Assert.AreEqual("Your answers show up on this side.", answerValue);
                 Console.WriteLine("Test no.7-Passed");
             }
             catch (Exception e)
@@ -200,8 +199,8 @@ namespace Calculator
                 driver.FindElement(By.LinkText("$$1")).Click();
                 driver.FindElement(By.LinkText("$$7")).Click();
                 driver.FindElement(By.LinkText("$$2")).Click();
-                string additionValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div")).Text;
-                Assert.IsTrue(additionValue.Contains("249"));
+                string additionValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div/span[2]")).Text;
+                Assert.AreEqual("=249", additionValue);
                 Console.WriteLine("Test No. 8 - Passed");
             }
 
@@ -229,8 +228,8 @@ namespace Calculator
                 Assert.AreEqual("You need something on both sides of the '-' symbol.", toolTipText6);
                 driver.FindElement(By.LinkText("$$−")).Click();
                 driver.FindElement(By.LinkText("$$1")).Click();
-                string subtractValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div")).Text;
-                Assert.IsTrue(subtractValue.Contains("2"));
+                string subtractValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div/span[2]/span[2]")).Text;
+                Assert.AreEqual("2", subtractValue);
                 Console.WriteLine("Test No. 9 - Passed");
             }
 
@@ -261,8 +260,8 @@ namespace Calculator
                 Assert.AreEqual("You need something on both sides of the '*' symbol.", toolTipText4);
                 driver.FindElement(By.LinkText("$$5")).Click();
                 driver.FindElement(By.LinkText("$$1")).Click();
-                string multipValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]")).Text;
-                Assert.IsTrue(multipValue.Contains("362.1"));
+                string multipValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div/span[2]")).Text;
+                Assert.AreEqual("=362.1", multipValue);
                 Console.WriteLine("Test No. 10 - Passed");
             }
 
@@ -288,8 +287,8 @@ namespace Calculator
                 String toolTipText5 = element.GetAttribute("tooltip");
                 Assert.AreEqual("You need a denominator for the bottom of your fraction.", toolTipText5);
                 driver.FindElement(By.LinkText("$$0")).Click();
-                string answerValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div")).Text;
-                Assert.IsTrue(answerValue.Contains("undefined"));
+                string answerValue1 = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div/span[2]")).Text;
+                Assert.AreEqual("=undefined", answerValue1);
                 Console.WriteLine("Test No. 11 - Passed");
             }
 
