@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
 
 
 
@@ -23,8 +18,7 @@ namespace Calculator
         public void SetUp()
         {
             driver = new FirefoxDriver();
-            driver.Navigate().GoToUrl("https://www.google.com/");
-            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(2));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
         [TearDown]
@@ -47,7 +41,8 @@ namespace Calculator
                 driver.FindElement(By.LinkText("$$.")).Click();
                 driver.FindElement(By.LinkText("$$1")).Click();
                 string decimalValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div")).Text;
-                Assert.IsTrue(decimalValue.Contains("1.1"));
+                Assert.AreEqual(decimalValue, "1.1");
+                //Assert.IsTrue(decimalValue.Contains("1.1"));
                 Console.WriteLine("Test No. 2 - Passed");
             }
 
@@ -230,8 +225,8 @@ namespace Calculator
                 driver.FindElement(By.LinkText("$$1")).Click();
                 driver.FindElement(By.LinkText("$$−")).Click();
                 IWebElement element = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[1]"));
-                String toolTipText2 = element.GetAttribute("tooltip");
-                Assert.AreEqual("You need something on both sides of the '-' symbol.", toolTipText2);
+                String toolTipText6 = element.GetAttribute("tooltip");
+                Assert.AreEqual("You need something on both sides of the '-' symbol.", toolTipText6);
                 driver.FindElement(By.LinkText("$$−")).Click();
                 driver.FindElement(By.LinkText("$$1")).Click();
                 string subtractValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div")).Text;
