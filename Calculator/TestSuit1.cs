@@ -47,7 +47,7 @@ namespace Calculator
 
             catch (Exception e)
             {
-                Console.WriteLine("Test No. 2 - An error has occured.", e);
+                Console.WriteLine("Test No. 2 - An error has occurred.", e);
             }
 
         }
@@ -71,7 +71,7 @@ namespace Calculator
             }
             catch (Exception e)
             {
-                Console.WriteLine("Test No. 3 - An error has occured.", e);
+                Console.WriteLine("Test No. 3 - An error has occurred.", e);
             }
         }
 
@@ -96,7 +96,7 @@ namespace Calculator
 
             catch (Exception e)
             {
-                Console.WriteLine("Test No. 4 - An error has occured.", e);
+                Console.WriteLine("Test No. 4 - An error has occurred.", e);
             }
         }
 
@@ -124,7 +124,7 @@ namespace Calculator
             catch (Exception e)
 
             {
-                Console.WriteLine("Test No. 5 - An error has occured.", e);
+                Console.WriteLine("Test No. 5 - An error has occurred.", e);
             }
         }
 
@@ -150,7 +150,7 @@ namespace Calculator
 
             catch (Exception e)
             {
-                Console.WriteLine("Test No. 6 - An error has occured.", e);
+                Console.WriteLine("Test No. 6 - An error has occurred.", e);
             }
         }
 
@@ -176,7 +176,7 @@ namespace Calculator
             }
             catch (Exception e)
             {
-                Console.WriteLine("Test No. 7 - An error has occured.", e);
+                Console.WriteLine("Test No. 7 - An error has occurred.", e);
             }
         }
 
@@ -208,7 +208,7 @@ namespace Calculator
             catch (Exception e)
 
             {
-                Console.WriteLine("Test No. 8 - An error has occured.", e);
+                Console.WriteLine("Test No. 8 - An error has occurred.", e);
             }
         }
 
@@ -238,7 +238,7 @@ namespace Calculator
             catch (Exception e)
 
             {
-                Console.WriteLine("Test No. 9 - An error has occured.", e);
+                Console.WriteLine("Test No. 9 - An error has occurred.", e);
             }
         }
 
@@ -269,7 +269,7 @@ namespace Calculator
 
             catch (Exception e)
             {
-                Console.WriteLine("Test No. 10 - An error has occured.", e);
+                Console.WriteLine("Test No. 10 - An error has occurred.", e);
             }
         }
 
@@ -298,7 +298,7 @@ namespace Calculator
             catch (Exception e)
 
             {
-                Console.WriteLine("Test No. 11 - An error has occured.", e);
+                Console.WriteLine("Test No. 11 - An error has occurred.", e);
             }
         }
 
