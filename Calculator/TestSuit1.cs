@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -18,7 +19,6 @@ namespace Calculator
         public void SetUp()
         {
             driver = new FirefoxDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
         }
 
         [TearDown]
@@ -165,6 +165,7 @@ namespace Calculator
                 driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
                 driver.FindElement(By.LinkText("$$9")).Click();
                 driver.FindElement(By.LinkText("$$÷")).Click();
+                Thread.Sleep(1000);
                 IWebElement element = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[1]"));
                 String toolTipText3 = element.GetAttribute("tooltip");
                 Assert.AreEqual("You need a denominator for the bottom of your fraction.", toolTipText3);
@@ -223,6 +224,7 @@ namespace Calculator
                 driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
                 driver.FindElement(By.LinkText("$$1")).Click();
                 driver.FindElement(By.LinkText("$$−")).Click();
+                Thread.Sleep(1000);
                 IWebElement element = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[1]"));
                 String toolTipText6 = element.GetAttribute("tooltip");
                 Assert.AreEqual("You need something on both sides of the '-' symbol.", toolTipText6);
@@ -283,12 +285,13 @@ namespace Calculator
                 driver.Navigate().GoToUrl("https://www.desmos.com/scientific");
                 driver.FindElement(By.LinkText("$$1")).Click();
                 driver.FindElement(By.LinkText("$$÷")).Click();
+                Thread.Sleep(1000);
                 IWebElement element = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[1]"));
                 String toolTipText5 = element.GetAttribute("tooltip");
                 Assert.AreEqual("You need a denominator for the bottom of your fraction.", toolTipText5);
                 driver.FindElement(By.LinkText("$$0")).Click();
-                string answerValue1 = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div/span[2]")).Text;
-                Assert.AreEqual("=undefined", answerValue1);
+                string fractionValue = driver.FindElement(By.XPath("/html/body/div[3]/div/div/div[1]/div[2]/div/div[5]/div[2]/div/span[2]")).Text;
+                Assert.AreEqual("=undefined", fractionValue);
                 Console.WriteLine("Test No. 11 - Passed");
             }
 
